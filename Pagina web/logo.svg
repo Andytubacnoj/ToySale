@@ -1,0 +1,66 @@
+<svg viewBox="0 0 250 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .train-body { fill: #FF6B5B; stroke: #2C3E50; stroke-width: 1.5; }
+      .train-detail { fill: #FFD54F; }
+      .train-wheel { fill: #2C3E50; }
+      .toy-text { font-family: 'Montserrat', Arial, sans-serif; font-weight: 800; }
+      .toy-t { font-size: 24px; fill: #0288D1; }
+      .toy-o { font-size: 24px; fill: #FFD54F; }
+      .toy-y { font-size: 24px; fill: #FF6B5B; }
+      .sale-text { font-family: 'Montserrat', Arial, sans-serif; font-weight: 700; font-size: 20px; }
+      .sale-s { fill: #FF6B5B; }
+      .sale-a { fill: #FF69B4; }
+      .sale-l { fill: #0288D1; }
+      .sale-e { fill: #FFD54F; }
+    </style>
+  </defs>
+  
+  <!-- TREN -->
+  <!-- Locomotora (frente del tren) -->
+  <rect x="10" y="35" width="20" height="15" class="train-body" rx="2"/>
+  
+  <!-- Chimba del tren -->
+  <rect x="15" y="28" width="10" height="8" class="train-body" rx="1"/>
+  
+  <!-- Vagón 1 -->
+  <rect x="32" y="35" width="18" height="15" class="train-body" rx="2"/>
+  <rect x="35" y="37" width="6" height="6" fill="#A0D995" stroke="#2C3E50" stroke-width="0.5"/>
+  
+  <!-- Vagón 2 (con niño) -->
+  <rect x="52" y="35" width="18" height="15" class="train-body" rx="2"/>
+  <circle cx="61" cy="40" r="3" fill="#E8B8A5"/>
+  
+  <!-- Vagón 3 (con balón) -->
+  <rect x="72" y="35" width="18" height="15" class="train-body" rx="2"/>
+  <circle cx="81" cy="40" r="2.5" fill="#FF69B4"/>
+  
+  <!-- Ruedas -->
+  <circle cx="14" cy="52" r="3" class="train-wheel"/>
+  <circle cx="26" cy="52" r="3" class="train-wheel"/>
+  <circle cx="39" cy="52" r="3" class="train-wheel"/>
+  <circle cx="56" cy="52" r="3" class="train-wheel"/>
+  <circle cx="69" cy="52" r="3" class="train-wheel"/>
+  <circle cx="82" cy="52" r="3" class="train-wheel"/>
+  
+  <!-- Conectores entre vagones -->
+  <line x1="30" y1="42" x2="32" y2="42" stroke="#2C3E50" stroke-width="1.5"/>
+  <line x1="50" y1="42" x2="52" y2="42" stroke="#2C3E50" stroke-width="1.5"/>
+  <line x1="70" y1="42" x2="72" y2="42" stroke="#2C3E50" stroke-width="1.5"/>
+  
+  <!-- TEXTO -->
+  <!-- "TOY" -->
+  <text x="95" y="35" class="toy-text toy-t">T</text>
+  <text x="110" y="35" class="toy-text toy-o">O</text>
+  <text x="127" y="35" class="toy-text toy-y">Y</text>
+  
+  <!-- "SALE" en línea inferior -->
+  <text x="95" y="55" class="sale-text sale-s">S</text>
+  <text x="110" y="55" class="sale-text sale-a">A</text>
+  <text x="125" y="55" class="sale-text sale-l">L</text>
+  <text x="140" y="55" class="sale-text sale-e">E</text>
+  
+  <!-- Efecto brillante (estrella pequeña) -->
+  <circle cx="150" cy="30" r="2" fill="#FFD54F" opacity="0.8"/>
+  <circle cx="160" cy="45" r="1.5" fill="#FFD54F" opacity="0.6"/>
+</svg>
