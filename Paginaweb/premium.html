@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exclusivos - TOY SALE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/styles for premium.css">
+    <style>
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); }
+        .modal.active { display: flex; align-items: center; justify-content: center; }
+        .auth-modal-content { background: var(--bg-dark); padding: 30px; border-radius: 10px; width: 90%; max-width: 400px; box-shadow: 0 10px 40px rgba(0,0,0,0.9); }
+        .auth-tabs { display: flex; gap: 0; margin-bottom: 20px; border-bottom: 2px solid #444; }
+        .auth-tab { flex: 1; padding: 12px; text-align: center; cursor: pointer; border: none; background: none; color: #aaa; font-weight: bold; border-bottom: 3px solid transparent; transition: all 0.3s; }
+        .auth-tab.active { color: var(--y-main); border-bottom-color: var(--y-main); }
+        .auth-form { display: none; }
+        .auth-form.active { display: block; }
+        .auth-form input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #555; border-radius: 5px; background: #1a1a1a; color: var(--text-light); font-family: 'Montserrat', sans-serif; }
+        .auth-form button { width: 100%; padding: 12px; background: var(--y-gold); color: black; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: all 0.3s; }
+        .auth-form button:hover { background: var(--y-main); transform: scale(1.02); }
+        .auth-form p { text-align: center; color: #aaa; font-size: 0.85rem; margin-top: 12px; }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="search-container">
+        <input type="text" placeholder="Buscar en exclusivos...">
+        <span style="cursor:pointer">🔍</span>
+    </div>
+    <div class="auth-buttons">
+        <button onclick="toggleModal('loginModal')">Iniciar Sesión</button>
+        <button onclick="toggleModal('loginModal')" style="background: var(--y-gold); color: black;">Registrarse</button>
+    </div>
+</div>
+
+<header>
+    <a href="Pagina principal.html" class="logo-box">
+        <img src="logo.png" alt="Toy Sale Logo" class="logo-img-original">
+    </a>
+    <nav>
+        <ul>
+            <li><button onclick="location.href='Pagina principal.html'">Inicio</button></li>
+            <li><button onclick="location.href='catalogo.html'">Colección</button></li>
+            <li><button class="active" style="border-color: var(--y-gold); color: var(--y-dark);">Exclusivos</button></li>
+            <li><button onclick="location.href='ubicacion.html'">Visítanos</button></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="premium-page">
+    <div class="premium-header">
+        <h1>✨ Colección Premium de Toy Sale ✨</h1>
+        <p>Piezas exclusivas seleccionadas con pasión desde Chimaltenango. Cada artículo es auténtico, único y certificado. Calidad que trasciende generaciones.</p>
+    </div>
+
+    <div class="premium-grid">
+        <!-- Tarjeta 1 -->
+        <div class="premium-card">
+            <div class="card-icon">🏎️</div>
+            <h2>Super Car Edición Oro</h2>
+            <p>Escala 1:10 con detalles en baño de oro real, motor funcional y caja de presentación de lujo.</p>
+            <div class="stock">Stock: Solo 5 unidades disponibles</div>
+            <p class="price">$299.99</p>
+            <button class="btn-reserve" onclick="reserveItem('Super Car Edición Oro', 299.99)">Reservar Ahora</button>
+        </div>
+
+        <!-- Tarjeta 2 -->
+        <div class="premium-card">
+            <div class="card-icon">🎮</div>
+            <h2>Consola Retro Pro</h2>
+            <p>Incluye 5000 juegos clásicos, acabados en fibra de carbono y pantalla HD. Edición limitada 2026.</p>
+            <div class="stock">Stock: Solo 8 unidades disponibles</div>
+            <p class="price">$180.50</p>
+            <button class="btn-reserve" onclick="reserveItem('Consola Retro Pro', 180.50)">Reservar Ahora</button>
+        </div>
+
+        <!-- Tarjeta 3 -->
+        <div class="premium-card">
+            <div class="card-icon">💎</div>
+            <h2>Collar Diamante Certificado</h2>
+            <p>Oro 18K con diamante natural certificado. Diseño exclusivo con cadena de platino. Joyería de inversión.</p>
+            <div class="stock">Stock: Solo 3 unidades disponibles</div>
+            <p class="price">$1,299.00</p>
+            <button class="btn-reserve" onclick="reserveItem('Collar Diamante', 1299.00)">Reservar Ahora</button>
+        </div>
+
+        <!-- Tarjeta 4 -->
+        <div class="premium-card">
+            <div class="card-icon">🎭</div>
+            <h2>Set Teatro Vintage Deluxe</h2>
+            <p>Teatro de madera maciza con accesorios de época, marionetas de colección y decoración hand-made.</p>
+            <div class="stock">Stock: Solo 2 unidades disponibles</div>
+            <p class="price">$549.99</p>
+            <button class="btn-reserve" onclick="reserveItem('Teatro Vintage', 549.99)">Reservar Ahora</button>
+        </div>
+
+        <!-- Tarjeta 5 -->
+        <div class="premium-card">
+            <div class="card-icon">⌚</div>
+            <h2>Reloj Mecánico Clásico</h2>
+            <p>Mecanismo suizo, acero inoxidable, resistencia al agua. Estuche de presentación con certificado.</p>
+            <div class="stock">Stock: Solo 6 unidades disponibles</div>
+            <p class="price">$899.50</p>
+            <button class="btn-reserve" onclick="reserveItem('Reloj Mecánico', 899.50)">Reservar Ahora</button>
+        </div>
+
+        <!-- Tarjeta 6 -->
+        <div class="premium-card">
+            <div class="card-icon">🚁</div>
+            <h2>Helicóptero Rc Premium</h2>
+            <p>Control remoto profesional, cámara 4K, batería de larga duración. Para coleccionistas y profesionales.</p>
+            <div class="stock">Stock: Solo 4 unidades disponibles</div>
+            <p class="price">$749.99</p>
+            <button class="btn-reserve" onclick="reserveItem('Helicóptero RC', 749.99)">Reservar Ahora</button>
+        </div>
+    </div>
+</main>
+
+<!-- MODAL LOGIN/REGISTRO -->
+<div id="loginModal" class="modal" onclick="if(event.target==this) toggleAuthModal()">
+    <div class="auth-modal-content">
+        <div class="auth-tabs">
+            <button class="auth-tab active" id="loginTab" onclick="switchAuthTab('login')">🔐 Iniciar Sesión</button>
+            <button class="auth-tab" id="registerTab" onclick="switchAuthTab('register')">📝 Registrarse</button>
+        </div>
+
+        <!-- Form Login -->
+        <div class="auth-form active" id="loginForm">
+            <input type="text" id="loginUser" placeholder="Usuario">
+            <input type="password" id="loginPass" placeholder="Contraseña">
+            <button onclick="handleLogin()">Entrar</button>
+            <p>¿No tienes cuenta? Usa el tab "Registrarse"</p>
+        </div>
+
+        <!-- Form Registro -->
+        <div class="auth-form" id="registerForm">
+            <input type="text" id="regUser" placeholder="Nombre de usuario (mín 3 caracteres)">
+            <input type="email" id="regEmail" placeholder="Tu correo electrónico">
+            <input type="password" id="regPass" placeholder="Contraseña (mín 6 caracteres)">
+            <button onclick="handleRegister()">Crear Cuenta</button>
+            <p>La solicitud será revisada por un administrador</p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 TOY SALE. Colección Premium Exclusiva.</p>
+</footer>
+
+<script src="auth.js"></script>
+<script>
+    function reserveItem(name, price) {
+        alert(`✓ Reserva solicitada para "${name}" por $${price}\n\nNos contactaremos pronto para confirmar.`);
+    }
+</script>
+
+</body>
+</html>

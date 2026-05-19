@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Principal - TOY SALE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/styles for pagina principal.css">
+    
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Buscar juguetes o joyas..." onkeyup="filterProducts()">
+        <span onclick="filterProducts()" style="cursor:pointer">🔍</span>
+    </div>
+    <div class="auth-buttons">
+        <button onclick="toggleModal('loginModal')">Iniciar Sesión</button>
+        <button onclick="toggleModal('loginModal')" style="background: var(--y-gold); color: black;">Registrarse</button>
+    </div>
+</div>
+
+<header>
+    <a href="Pagina principal.html" class="logo-box">
+        <img src="logo.png" alt="Toy Sale Logo" class="logo-img-original">
+    </a>
+    <nav>
+        <ul>
+            <li><button onclick="location.href='Pagina principal.html'" class="active">Inicio</button></li>
+            <li><button onclick="location.href='catalogo.html'">Colección</button></li>
+            <li><button onclick="location.href='premium.html'">Exclusivos</button></li>
+            <li><button onclick="location.href='ubicacion.html'">Visítanos</button></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- PÁGINA: INICIO -->
+<main id="inicio">
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Sonrisas Genuinas, Momentos Inolvidables  XD🎁</h1>
+            <p>Trae alegría a tu hogar con nuestra colección de juguetes educativos y joyería artesanal guatemalteca. Cada producto es seleccionado con amor desde Chimaltenango para tu familia.</p>
+            <button class="btn-cta" onclick="location.href='catalogo.html'">Ver Colección</button>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-image">🧸✨🎁</div>
+        </div>
+    </section>
+
+    <div class="stats-bar">
+        <div class="stat-item">
+            <h3>+5000</h3>
+            <p>Juguetes Únicos</p>
+        </div>
+        <div class="stat-item">
+            <h3>24h</h3>
+            <p>Entrega Rápida</p>
+        </div>
+        <div class="stat-item">
+            <h3>100%</h3>
+            <p>Seguro y Certificado</p>
+        </div>
+    </div>
+
+    <section class="category-showcase">
+        <h2 style="font-size: 2.5rem; margin-bottom: 3rem; text-align: center; color: var(--y-dark);">Compra por Categoría</h2>
+        <div class="category-grid">
+            <div class="cat-card" onclick="location.href='catalogo.html?cat=aventura'">
+                <div class="cat-image">🚀</div>
+                <h3>Aventura & Acción</h3>
+                <p>Para los aventureros</p>
+            </div>
+            <div class="cat-card" onclick="location.href='catalogo.html?cat=educativos'">
+                <div class="cat-image">🧠</div>
+                <h3>Juguetes Educativos</h3>
+                <p>Aprender es divertido</p>
+            </div>
+            <div class="cat-card" onclick="location.href='catalogo.html?cat=peluches'">
+                <div class="cat-image">🧸</div>
+                <h3>Peluches & Suave</h3>
+                <p>Abrazos reconfortantes</p>
+            </div>
+            <div class="cat-card" onclick="location.href='catalogo.html?cat=joyeria'">
+                <div class="cat-image">💍</div>
+                <h3>Joyería Artesanal</h3>
+                <p>Diseño guatemalteco</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: DESTACADOS -->
+    <section class="featured-section">
+        <h2>⭐ Productos Destacados</h2>
+        <p class="section-subtitle">Los favoritos de nuestros clientes</p>
+        <div class="featured-grid">
+            <div class="featured-card">
+                <div class="featured-image" style="background: linear-gradient(135deg, #FFD54F, #FFC107);">🤖</div>
+                <h3>Robot Explorador</h3>
+                <p>Inteligencia artificial avanzada</p>
+                <span class="price">$45.00</span>
+                <button class="btn-add">Agregar al Carrito</button>
+            </div>
+            <div class="featured-card">
+                <div class="featured-image" style="background: linear-gradient(135deg, #FF6BA6, #E91E63);">💎</div>
+                <h3>Collar Diamante</h3>
+                <p>Joyería Premium Certificada</p>
+                <span class="price">$120.00</span>
+                <button class="btn-add">Agregar al Carrito</button>
+            </div>
+            <div class="featured-card">
+                <div class="featured-image" style="background: linear-gradient(135deg, #0288D1, #0277BD);">🏰</div>
+                <h3>Castillo de Madera</h3>
+                <p>Construcción Medieval Auténtica</p>
+                <span class="price">$60.00</span>
+                <button class="btn-add">Agregar al Carrito</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: BENEFICIOS -->
+    <section class="benefits-section">
+        <h2 style="text-align: center; color: var(--y-dark); margin-bottom: 3rem;">¿Por Qué Elegir TOY SALE?</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon" style="background: var(--y-main);">🚚</div>
+                <h3>Envío Rápido</h3>
+                <p>Entrega en 24 horas a nivel nacional. Sin costo adicional en compras mayores a $50.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon" style="background: var(--y-gold);">🛡️</div>
+                <h3>100% Seguro</h3>
+                <p>Todos nuestros productos están certificados y pasan rigurosos controles de calidad.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon" style="background: var(--y-deep);">💳</div>
+                <h3>Pago Flexible</h3>
+                <p>Múltiples formas de pago: tarjeta, transferencia, efectivo y plazos sin interés.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon" style="background: var(--accent-blue);">⭐</div>
+                <h3>Garantía Completa</h3>
+                <p>Garantía de fábrica + devolución gratis en 30 días si no estás satisfecho.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: PROMOCIÓN -->
+    <section class="promo-section">
+        <div class="promo-content">
+            <h2>🎉 ¡OFERTA ESPECIAL!</h2>
+            <p>Hasta 40% de descuento en colección de joyería premium</p>
+            <button class="btn-promo" onclick="location.href='premium.html'">Ver Exclusivos</button>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: TESTIMONIOS -->
+    <section class="testimonials-section">
+        <h2 style="text-align: center; color: var(--y-dark); margin-bottom: 3rem;">Lo Que Dicen Nuestros Clientes</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"Qué sorpresa! Los juguetes llegaron en perfecto estado. Mi hijo no para de jugar. Muy recomendado desde Chimaltenango."</p>
+                <h4>Rosa María Chen</h4>
+                <span>Chimaltenango, Guatemala</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"Las joyas son hermosas y auténticas. Uso la pulsera diario. Toy Sale tiene calidad real, no es cosa de juego."</p>
+                <h4>Juan Pablo Morales</h4>
+                <span>Guatemala City</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"El servicio es personalizado. Llamé por teléfono y me orientaron perfecto. Adoramos a Toy Sale."</p>
+                <h4>Sofía Rodríguez</h4>
+                <span>San Martín Jilotepeque</span>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- MODAL LOGIN/REGISTRO -->
+<div id="loginModal" class="modal" onclick="if(event.target==this) toggleAuthModal()">
+    <div class="auth-modal-content">
+        <div class="auth-tabs">
+            <button class="auth-tab active" id="loginTab" onclick="switchAuthTab('login')">🔐 Iniciar Sesión</button>
+            <button class="auth-tab" id="registerTab" onclick="switchAuthTab('register')">📝 Registrarse</button>
+        </div>
+
+        <!-- Form Login -->
+        <div class="auth-form active" id="loginForm">
+            <input type="text" id="loginUser" placeholder="Usuario">
+            <input type="password" id="loginPass" placeholder="Contraseña">
+            <button onclick="handleLogin()">Entrar</button>
+            <p>¿No tienes cuenta? Usa el tab "Registrarse"</p>
+        </div>
+
+        <!-- Form Registro -->
+        <div class="auth-form" id="registerForm">
+            <input type="text" id="regUser" placeholder="Nombre de usuario (mín 3 caracteres)">
+            <input type="email" id="regEmail" placeholder="Tu correo electrónico">
+            <input type="password" id="regPass" placeholder="Contraseña (mín 6 caracteres)">
+            <button onclick="handleRegister()">Crear Cuenta</button>
+            <p>La solicitud será revisada por un administrador</p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-col">
+        <h4 style="color: var(--y-main);">🎁 Toy Sale</h4>
+        <p>Haciendo del mundo un lugar más divertido, un juguete a la vez. Calidad y seguridad garantizada desde 2010.</p>
+        <p style="margin-top: 1rem; font-size: 0.85rem; color: #888;">Ofrecemos juguetes educativos y joyería premium para todas las edades.</p>
+    </div>
+    <div class="footer-col">
+        <h4>📋 Enlaces Útiles</h4>
+        <p>→ Sobre Nosotros</p>
+        <p>→ Políticas de Envío</p>
+        <p>→ Garantía de Fábrica</p>
+        <p>→ Preguntas Frecuentes</p>
+        <p>→ Cambios y Devoluciones</p>
+    </div>
+    <div class="footer-col">
+        <h4>📞 Contacto</h4>
+        <p>Email: info@toysale.com</p>
+        <p>Tel: +1 (555) 123-4567</p>
+        <p>Horario: Lun-Vie 8AM-6PM</p>
+        <p>Sábado: 9AM-4PM</p>
+        <p>Domingo: Cerrado</p>
+    </div>
+    <div class="footer-col">
+        <h4>📱 Síguenos</h4>
+        <p>🌐 Facebook: @toysale</p>
+        <p>📷 Instagram: @toysale_official</p>
+        <p>🐦 Twitter: @toy_sale</p>
+        <p>▶️ YouTube: Toy Sale Channel</p>
+    </div>
+    <div class="footer-col">
+        <h4>💌 Newsletter</h4>
+        <p>Recibe ofertas exclusivas y novedades cada semana.</p>
+        <input type="email" placeholder="Tu email" style="width: 100%; padding: 10px; border-radius: 5px; border: none; margin-top: 10px;">
+        <button style="width: 100%; padding: 10px; margin-top: 10px; background: var(--y-main); border: none; border-radius: 5px; cursor: pointer; font-weight: bold; color: black;">Suscribirse</button>
+    </div>
+    <div style="grid-column: 1 / -1; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 2rem;">
+        <p style="margin-bottom: 1rem;">&copy; 2026 Toy Sale Global Inc | Andy Tubac. Todos los derechos reservados.</p>
+        <p style="font-size: 0.85rem; color: #888;">→ <span style="cursor: pointer; hover: text-decoration: underline;">Términos de Servicio</span> | <span style="cursor: pointer;">Política de Privacidad</span> | <span style="cursor: pointer;">Política de Cookies</span></p>
+    </div> 
+</footer>
+
+<div id="notif" class="notif"></div>
+
+<script src="auth.js"></script>
+<script>
+    function filterProducts() {
+        const query = document.getElementById('searchInput').value.toLowerCase();
+        if(query.length > 0) {
+            location.href = 'catalogo.html?search=' + encodeURIComponent(query);
+        }
+    }
+</script>
+
+</body>
+</html>

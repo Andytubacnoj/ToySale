@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin - TOY SALE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --y-main: #FFD54F;
+            --y-gold: #FFC107;
+            --y-dark: #F57F17;
+            --bg-dark: #263238;
+            --text-light: #ecf0f1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #263238 100%);
+            color: var(--text-light);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .admin-header {
+            background: var(--bg-dark);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--y-gold);
+        }
+
+        .admin-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--y-main);
+        }
+
+        .admin-header p {
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+
+        .admin-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .info-card {
+            background: var(--bg-dark);
+            padding: 20px;
+            border-radius: 8px;
+            border-top: 3px solid var(--y-gold);
+        }
+
+        .info-card h3 {
+            color: var(--y-main);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .info-card .number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--y-gold);
+        }
+
+        .requests-container {
+            display: grid;
+            gap: 20px;
+        }
+
+        .request-section {
+            background: var(--bg-dark);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid var(--y-gold);
+        }
+
+        .request-section h2 {
+            color: var(--y-main);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .request-item {
+            background: #1a1a1a;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 3px solid var(--y-dark);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .request-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .request-info h4 {
+            color: var(--y-main);
+            margin-bottom: 8px;
+        }
+
+        .request-info p {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin: 3px 0;
+        }
+
+        .request-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-approve, .btn-reject {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-approve {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .btn-approve:hover {
+            background: #45a049;
+            transform: scale(1.05);
+        }
+
+        .btn-reject {
+            background: #f44336;
+            color: white;
+        }
+
+        .btn-reject:hover {
+            background: #da190b;
+            transform: scale(1.05);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #aaa;
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: var(--y-gold);
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: var(--y-main);
+            transform: translateX(-5px);
+        }
+
+        .approved {
+            opacity: 0.6;
+            border-left-color: #4CAF50;
+        }
+
+        .approved .request-info h4 {
+            color: #4CAF50;
+        }
+
+        @media (max-width: 768px) {
+            .request-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .request-actions {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .admin-header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<a href="Pagina principal.html" class="back-button">← Volver a Inicio</a>
+
+<div class="admin-container">
+    <div class="admin-header">
+        <h1>🛡️ Panel de Administración</h1>
+        <p>Gestiona las solicitudes de login y registro de usuarios</p>
+    </div>
+
+    <div class="admin-info">
+        <div class="info-card">
+            <h3>📋 Solicitudes Pendientes</h3>
+            <div class="number" id="totalPending">0</div>
+        </div>
+        <div class="info-card">
+            <h3>✅ Aprobadas</h3>
+            <div class="number" id="totalApproved">0</div>
+        </div>
+        <div class="info-card">
+            <h3>👥 Usuarios Activos</h3>
+            <div class="number" id="totalUsers">0</div>
+        </div>
+    </div>
+
+    <div class="requests-container">
+        <!-- Solicitudes de Registro -->
+        <div class="request-section">
+            <h2>📝 Solicitudes de Registro</h2>
+            <div id="registerRequests">
+                <div class="empty-state">
+                    <p>No hay solicitudes de registro pendientes</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Solicitudes de Login -->
+        <div class="request-section">
+            <h2>🔐 Solicitudes de Acceso</h2>
+            <div id="loginRequests">
+                <div class="empty-state">
+                    <p>No hay solicitudes de acceso pendientes</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="auth.js"></script>
+<script>
+    // Verificar que sea admin (contraseña simple - en producción usar autenticación real)
+    function checkAdminAccess() {
+        const adminPass = prompt('🔐 Ingresa la contraseña de administrador:');
+        if (adminPass !== 'admin123') {
+            alert('❌ Acceso denegado');
+            location.href = 'Pagina principal.html';
+        }
+    }
+
+    // Cargar solicitudes pendientes
+    function loadPendingRequests() {
+        const pendingRequests = auth.getPendingRequests();
+        
+        // Contadores
+        const totalPending = (pendingRequests.registers.filter(r => r.status === 'pending').length) + 
+                             (pendingRequests.logins.filter(r => r.status === 'pending').length);
+        const totalApproved = (pendingRequests.registers.filter(r => r.status === 'approved').length) + 
+                              (pendingRequests.logins.filter(r => r.status === 'approved').length);
+        const totalUsers = Object.keys(auth.users).length;
+
+        document.getElementById('totalPending').textContent = totalPending;
+        document.getElementById('totalApproved').textContent = totalApproved;
+        document.getElementById('totalUsers').textContent = totalUsers;
+
+        // Renderizar solicitudes de registro
+        const registerContainer = document.getElementById('registerRequests');
+        const registers = pendingRequests.registers.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+        if (registers.length === 0) {
+            registerContainer.innerHTML = '<div class="empty-state"><p>✅ No hay solicitudes de registro</p></div>';
+        } else {
+            registerContainer.innerHTML = registers.map(req => `
+                <div class="request-item ${req.status === 'approved' ? 'approved' : ''}">
+                    <div class="request-info">
+                        <h4>👤 ${req.username}</h4>
+                        <p>📧 Email: <strong>${req.email}</strong></p>
+                        <p>📅 Solicitado: ${req.timestamp}</p>
+                        <p>Estado: <strong style="color: ${req.status === 'approved' ? '#4CAF50' : '#FFC107'}">${req.status === 'approved' ? '✅ APROBADO' : '⏳ PENDIENTE'}</strong></p>
+                    </div>
+                    <div class="request-actions">
+                        ${req.status === 'pending' ? `
+                            <button class="btn-approve" onclick="approveRequest('${req.id}', 'register')">✅ Aprobar</button>
+                            <button class="btn-reject" onclick="rejectRequest('${req.id}', 'register')">❌ Rechazar</button>
+                        ` : `
+                            <p style="color: #4CAF50; font-weight: bold;">✅ Aprobado</p>
+                        `}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Renderizar solicitudes de login
+        const loginContainer = document.getElementById('loginRequests');
+        const logins = pendingRequests.logins.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+        if (logins.length === 0) {
+            loginContainer.innerHTML = '<div class="empty-state"><p>✅ No hay solicitudes de acceso</p></div>';
+        } else {
+            loginContainer.innerHTML = logins.map(req => `
+                <div class="request-item ${req.status === 'approved' ? 'approved' : ''}">
+                    <div class="request-info">
+                        <h4>🔑 ${req.username}</h4>
+                        <p>📅 Intentó acceder: ${req.timestamp}</p>
+                        <p>Estado: <strong style="color: ${req.status === 'approved' ? '#4CAF50' : '#FFC107'}">${req.status === 'approved' ? '✅ APROBADO' : '⏳ PENDIENTE'}</strong></p>
+                    </div>
+                    <div class="request-actions">
+                        ${req.status === 'pending' ? `
+                            <button class="btn-approve" onclick="approveRequest('${req.id}', 'login')">✅ Aprobar</button>
+                            <button class="btn-reject" onclick="rejectRequest('${req.id}', 'login')">❌ Rechazar</button>
+                        ` : `
+                            <p style="color: #4CAF50; font-weight: bold;">✅ Aprobado</p>
+                        `}
+                    </div>
+                </div>
+            `).join('');
+        }
+    }
+
+    // Aprobar solicitud
+    function approveRequest(requestId, type) {
+        const result = auth.approvePending(requestId, type);
+        showNotif(result.msg);
+        loadPendingRequests();
+    }
+
+    // Rechazar solicitud
+    function rejectRequest(requestId, type) {
+        if (confirm('¿Estás seguro de que quieres rechazar esta solicitud?')) {
+            const result = auth.rejectPending(requestId, type);
+            showNotif(result.msg);
+            loadPendingRequests();
+        }
+    }
+
+    // Mostrar notificación
+    function showNotif(text) {
+        alert(text);
+    }
+
+    // Verificar acceso al cargar
+    window.addEventListener('load', () => {
+        checkAdminAccess();
+        loadPendingRequests();
+        setInterval(loadPendingRequests, 5000); // Actualizar cada 5 segundos
+    });
+</script>
+
+</body>
+</html>

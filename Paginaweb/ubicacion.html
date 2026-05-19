@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visítanos - TOY SALE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/styles for ubicacion.css">
+    <style>
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); }
+        .modal.active { display: flex; align-items: center; justify-content: center; }
+        .auth-modal-content { background: var(--bg-dark); padding: 30px; border-radius: 10px; width: 90%; max-width: 400px; box-shadow: 0 10px 40px rgba(0,0,0,0.9); }
+        .auth-tabs { display: flex; gap: 0; margin-bottom: 20px; border-bottom: 2px solid #444; }
+        .auth-tab { flex: 1; padding: 12px; text-align: center; cursor: pointer; border: none; background: none; color: #aaa; font-weight: bold; border-bottom: 3px solid transparent; transition: all 0.3s; }
+        .auth-tab.active { color: var(--y-main); border-bottom-color: var(--y-main); }
+        .auth-form { display: none; }
+        .auth-form.active { display: block; }
+        .auth-form input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #555; border-radius: 5px; background: #1a1a1a; color: var(--text-light); font-family: 'Montserrat', sans-serif; }
+        .auth-form button { width: 100%; padding: 12px; background: var(--y-gold); color: black; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: all 0.3s; }
+        .auth-form button:hover { background: var(--y-main); transform: scale(1.02); }
+        .auth-form p { text-align: center; color: #aaa; font-size: 0.85rem; margin-top: 12px; }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="search-container">
+        <input type="text" placeholder="Buscar...">
+        <span style="cursor:pointer">🔍</span>
+    </div>
+    <div class="auth-buttons">
+        <button onclick="toggleModal('loginModal')">Iniciar Sesión</button>
+        <button onclick="toggleModal('loginModal')" style="background: var(--y-gold); color: black;">Registrarse</button>
+    </div>
+</div>
+
+<header>
+    <a href="Pagina principal.html" class="logo-box">
+        <img src="logo.png" alt="Toy Sale Logo" class="logo-img-original">
+    </a>
+    <nav>
+        <ul>
+            <li><button onclick="location.href='Pagina principal.html'">Inicio</button></li>
+            <li><button onclick="location.href='catalogo.html'">Colección</button></li>
+            <li><button onclick="location.href='premium.html'">Exclusivos</button></li>
+            <li><button class="active" style="border-color: var(--y-gold); color: var(--y-dark);">Visítanos</button></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- SECCIÓN UBICACIÓN -->
+<main class="location-container">
+    <div class="info-box">
+        <h2>🇬🇹 ¡Visítanos en Chimaltenango!</h2>
+        <p>Te invitamos a conocer nuestro espacio en el hermoso Chimaltenango, tierra de artesanía y tradición. Aquí encontrarás juguetes únicos y joyería artesanal guatemalteca, todo con atención personalizada.</p>
+        
+        <div class="store-info">
+            <div class="info-item">
+                <span>📍</span>
+                <div>
+                    <h4>Ubicación</h4>
+                    <p>Chimaltenango, Guatemala<br>Centro Comercial Local<br>A 1 hora de la Ciudad de Guatemala</p>
+                </div>
+            </div>
+            
+            <div class="info-item">
+                <span>📞</span>
+                <div>
+                    <h4>Teléfono</h4>
+                    <p>+502 7834 5678<br>+502 2245 9876</p>
+                </div>
+            </div>
+            
+            <div class="info-item">
+                <span>⏰</span>
+                <div>
+                    <h4>Horarios</h4>
+                    <p>Lunes a Viernes: 8:30 AM - 7:00 PM<br>Sábado: 9:00 AM - 8:00 PM<br>Domingo: 10:00 AM - 5:00 PM</p>
+                </div>
+            </div>
+            
+            <div class="info-item">
+                <span>✉️</span>
+                <div>
+                    <h4>Contacto</h4>
+                    <p>info@toysale.gt<br>toysale.chimaltenango@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="map-frame">
+        <span>🧭</span>
+        <p>Ubicación en Google Maps</p>
+        <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 10px;">Integración de mapa disponible</p>
+    </div>
+</main>
+
+<!-- SECCIÓN CONTACTO -->
+<div class="contact-section">
+    <h2>📧 Cuéntanos, ¿En qué podemos ayudarte?</h2>
+    <p>Desde Chimaltenango al corazón de tu hogar. Si buscas algo especial, queremos saberlo. Escríbenos para pedidos personalizados, joyería artesanal o cualquier consulta.</p>
+    
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+            <input type="text" placeholder="Tu Nombre" required>
+            <input type="email" placeholder="Tu Correo Electrónico" required>
+        </div>
+        <div class="form-row">
+            <input type="text" placeholder="Asunto" required>
+        </div>
+        <div class="form-row">
+            <textarea placeholder="¿Qué estás buscando?" rows="6" required></textarea>
+        </div>
+        <div class="form-row">
+            <button type="submit" class="btn-send">Enviar Mensaje</button>
+        </div>
+    </form>
+</div>
+
+<!-- MODAL LOGIN/REGISTRO -->
+<div id="loginModal" class="modal" onclick="if(event.target==this) toggleAuthModal()">
+    <div class="auth-modal-content">
+        <div class="auth-tabs">
+            <button class="auth-tab active" id="loginTab" onclick="switchAuthTab('login')">🔐 Iniciar Sesión</button>
+            <button class="auth-tab" id="registerTab" onclick="switchAuthTab('register')">📝 Registrarse</button>
+        </div>
+
+        <!-- Form Login -->
+        <div class="auth-form active" id="loginForm">
+            <input type="text" id="loginUser" placeholder="Usuario">
+            <input type="password" id="loginPass" placeholder="Contraseña">
+            <button onclick="handleLogin()">Entrar</button>
+            <p>¿No tienes cuenta? Usa el tab "Registrarse"</p>
+        </div>
+
+        <!-- Form Registro -->
+        <div class="auth-form" id="registerForm">
+            <input type="text" id="regUser" placeholder="Nombre de usuario (mín 3 caracteres)">
+            <input type="email" id="regEmail" placeholder="Tu correo electrónico">
+            <input type="password" id="regPass" placeholder="Contraseña (mín 6 caracteres)">
+            <button onclick="handleRegister()">Crear Cuenta</button>
+            <p>La solicitud será revisada por un administrador</p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 Toy Sale & Jewelry Masters. Unión Creativa.</p>
+    <p style="margin-top: 10px; opacity: 0.7; font-size: 0.9rem;">Síguenos en redes sociales | Política de privacidad | Términos de servicio</p>
+</footer>
+
+<script src="auth.js"></script>
+<script>
+    function handleSubmit(event) {
+        event.preventDefault();
+        alert('✓ Mensaje enviado correctamente.\n\nNos contactaremos pronto para ayudarte.');
+        event.target.reset();
+    }
+</script>
+
+</body>
+</html>

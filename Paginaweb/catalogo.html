@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo - TOY SALE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/styles for catalogo.css">
+    <style>
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); }
+        .modal.active { display: flex; align-items: center; justify-content: center; }
+        .auth-modal-content { background: var(--bg-dark); padding: 30px; border-radius: 10px; width: 90%; max-width: 400px; box-shadow: 0 10px 40px rgba(0,0,0,0.9); }
+        .auth-tabs { display: flex; gap: 0; margin-bottom: 20px; border-bottom: 2px solid #444; }
+        .auth-tab { flex: 1; padding: 12px; text-align: center; cursor: pointer; border: none; background: none; color: #aaa; font-weight: bold; border-bottom: 3px solid transparent; transition: all 0.3s; }
+        .auth-tab.active { color: var(--y-main); border-bottom-color: var(--y-main); }
+        .auth-form { display: none; }
+        .auth-form.active { display: block; }
+        .auth-form input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #555; border-radius: 5px; background: #1a1a1a; color: var(--text-light); font-family: 'Montserrat', sans-serif; }
+        .auth-form button { width: 100%; padding: 12px; background: var(--y-gold); color: black; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: all 0.3s; }
+        .auth-form button:hover { background: var(--y-main); transform: scale(1.02); }
+        .auth-form p { text-align: center; color: #aaa; font-size: 0.85rem; margin-top: 12px; }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Buscar juguetes o joyas...">
+        <span onclick="searchProducts()" style="cursor:pointer">🔍</span>
+    </div>
+    <div class="auth-buttons">
+        <button onclick="toggleModal('loginModal')">Iniciar Sesión</button>
+        <button onclick="toggleModal('loginModal')" style="background: var(--y-gold); color: black;">Registrarse</button>
+    </div>
+</div>
+
+<header>
+    <a href="Pagina principal.html" class="logo-box">
+        <img src="logo.png" alt="Toy Sale Logo" class="logo-img-original">
+    </a>
+    <nav>
+        <ul>
+            <li><button onclick="location.href='Pagina principal.html'">Inicio</button></li>
+            <li><button class="active" style="border-color: var(--y-gold); color: var(--y-dark);">Colección</button></li>
+            <li><button onclick="location.href='premium.html'">Exclusivos</button></li>
+            <li><button onclick="location.href='ubicacion.html'">Visítanos</button></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="catalog-container">
+    <h2>Colección Completa - Toy Sale Guatemala 🇬🇹</h2>
+    
+    <div class="filter-tags">
+        <span class="tag active" onclick="filterCategory('todos', this)">Todos</span>
+        <span class="tag" onclick="filterCategory('juguetes', this)">🧸 Juguetes</span>
+        <span class="tag" onclick="filterCategory('joyeria', this)">💎 Joyería</span>
+        <span class="tag" onclick="filterCategory('sets', this)">🎁 Sets</span>
+    </div>
+
+    <div class="products-grid" id="productsGrid">
+        <!-- Productos se cargan con JS -->
+    </div>
+</main>
+
+<!-- MODAL LOGIN/REGISTRO -->
+<div id="loginModal" class="modal" onclick="if(event.target==this) toggleAuthModal()">
+    <div class="auth-modal-content">
+        <div class="auth-tabs">
+            <button class="auth-tab active" id="loginTab" onclick="switchAuthTab('login')">🔐 Iniciar Sesión</button>
+            <button class="auth-tab" id="registerTab" onclick="switchAuthTab('register')">📝 Registrarse</button>
+        </div>
+
+        <!-- Form Login -->
+        <div class="auth-form active" id="loginForm">
+            <input type="text" id="loginUser" placeholder="Usuario">
+            <input type="password" id="loginPass" placeholder="Contraseña">
+            <button onclick="handleLogin()">Entrar</button>
+            <p>¿No tienes cuenta? Usa el tab "Registrarse"</p>
+        </div>
+
+        <!-- Form Registro -->
+        <div class="auth-form" id="registerForm">
+            <input type="text" id="regUser" placeholder="Nombre de usuario (mín 3 caracteres)">
+            <input type="email" id="regEmail" placeholder="Tu correo electrónico">
+            <input type="password" id="regPass" placeholder="Contraseña (mín 6 caracteres)">
+            <button onclick="handleRegister()">Crear Cuenta</button>
+            <p>La solicitud será revisada por un administrador</p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 Toy Sale & Jewelry Masters. Unión Creativa.</p>
+</footer>
+
+<script src="auth.js"></script>
+<script>
+    const productos = [
+        { id: 1, nombre: "Robot Explorador", precio: 45, cat: "juguetes", icon: "🤖" },
+        { id: 2, nombre: "Collar Mariposa Oro", precio: 120, cat: "joyeria", icon: "🦋", esJoyeria: true },
+        { id: 3, nombre: "Castillo de Madera", precio: 60, cat: "juguetes", icon: "🏰" },
+        { id: 4, nombre: "Pulsera Infantil Plata", precio: 85, cat: "joyeria", icon: "✨", esJoyeria: true },
+        { id: 5, nombre: "Set: Oso + Medallón", precio: 150, cat: "sets", icon: "🧸💎" },
+        { id: 6, nombre: "Anillo Ajustable Estrella", precio: 55, cat: "joyeria", icon: "⭐", esJoyeria: true },
+        { id: 7, nombre: "Bloques de Construcción", precio: 35, cat: "juguetes", icon: "🧱" },
+        { id: 8, nombre: "Reloj de Bolsillo Vintage", precio: 200, cat: "joyeria", icon: "⏰", esJoyeria: true },
+        { id: 9, nombre: "Auto de Carreras Turbo", precio: 40, cat: "juguetes", icon: "🏎️" },
+    ];
+
+    let currentCategory = 'todos';
+
+    function renderProducts(lista) {
+        const grid = document.getElementById('productsGrid');
+        grid.innerHTML = lista.map(p => `
+            <div class="product-card">
+                <div class="img-placeholder">${p.icon}</div>
+                <div class="info">
+                    ${p.esJoyeria ? '<span class="tag-jewel">Joyería Premium</span>' : ''}
+                    <h3>${p.nombre}</h3>
+                    <p style="color: #666; font-size: 0.9rem;">Producto de calidad</p>
+                    <p class="product-price">$${p.precio}.00</p>
+                    <button class="btn-cta" onclick="addToCart('${p.nombre}', ${p.precio})">Comprar</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function filterCategory(cat, element) {
+        currentCategory = cat;
+        document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+        element.classList.add('active');
+        
+        const filtered = cat === 'todos' ? productos : productos.filter(p => p.cat === cat);
+        renderProducts(filtered);
+    }
+
+    function searchProducts() {
+        const query = document.getElementById('searchInput').value.toLowerCase();
+        const filtered = productos.filter(p => p.nombre.toLowerCase().includes(query));
+        renderProducts(filtered);
+    }
+
+    function addToCart(nombre, precio) {
+        alert(`✓ "${nombre}" añadido al carrito por $${precio}`);
+    }
+
+    // Cargar categoría de URL si existe
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('cat')) {
+        const cat = params.get('cat');
+        const tagElement = document.querySelector(`[onclick="filterCategory('${cat}', this)"]`);
+        if (tagElement) filterCategory(cat, tagElement);
+    } else {
+        renderProducts(productos);
+    }
+</script>
+
+</body>
+</html>
